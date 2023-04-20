@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="course">
+	<!-- insert, delete, update는 무조건 resultType="int"이므로
+	     프로그래머가 써주지 않아도 이미 resultType="int"가 
+	     있는 것으로 본다.!
+	 -->
+	<insert id="create" parameterType="courseVO" >
+		insert into course 
+		values (#{id}, #{name}, #{text}, #{img}, #{courseroad})
+	</insert>
+	
+	<delete id="del"  parameterType="String">
+		delete from course 
+		where id = #{id}
+	</delete>
+	
+	<update id="up"  parameterType="courseVO">
+		update course 
+		set text = #{text} 
+		where id = #{id}
+	</update>
+	
+	<select id="one" parameterType="String" resultType="courseVO">
+		select * 
+		from course
+		where id = #{id}
+	</select>
+	
+	<select id="all"  resultType="courseVO">
+		select *
+		from course
+	
+	</select>
+			<!--  select는 resultType을 써줘야 한다!
+			select 많은 값이 요청되는 경우  resultType="memberVO"가
+	     	알아서 ArrayList도 실행 시켜 준다.!
+	 -->
+
+</mapper>
